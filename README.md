@@ -1,7 +1,7 @@
 # CookBook Web App
 
 > **Status: Implementation has not started.**
-> This repository currently contains only the folder structure, starter documentation, and configuration placeholders. There is no application code, no Maven build file (`pom.xml`), and no database schema yet.
+> This repository currently contains only the folder structure, starter documentation, and configuration placeholders. There is no application code, no Maven build file (`pom.xml`), and no database collections or data model yet.
 
 ## Project Summary
 
@@ -16,7 +16,7 @@ _TODO: Replace this paragraph with the summary from the team's project proposal 
 | Language       | Java                                     | Decided     |
 | Framework      | Spring Boot                              | Decided     |
 | Build tool     | Maven                                    | Decided     |
-| Database       | PostgreSQL                               | Decided     |
+| Database       | MongoDB                                  | Decided     |
 | Auth/Security  | Spring Security                          | Decided     |
 | Frontend       | htmx (server-rendered HTML from Spring Boot) | Decided |
 | HTML templating | _TBD_ (e.g., Thymeleaf)                 | **Undecided** |
@@ -29,7 +29,7 @@ Install these before setup begins (versions are placeholders; the team should co
 
 - **JDK**: version _TBD_ (e.g., 17 or 21 LTS)
 - **Maven**: version _TBD_ (or use the Maven Wrapper once it is added)
-- **PostgreSQL**: version _TBD_
+- **MongoDB**: version _TBD_ (local install, Docker, or a free MongoDB Atlas cluster; team to decide)
 - **Git**
 - **IDE**: IntelliJ IDEA recommended
 
@@ -85,7 +85,7 @@ _These steps are placeholders and will be filled in once implementation starts._
    cp .env.example .env
    ```
    Then edit `.env` with your own local database settings. **Never commit `.env`.**
-3. **Set up PostgreSQL**: _TODO: steps to create the local database and user._
+3. **Set up MongoDB**: _TODO: steps to start MongoDB locally (or connect to the shared cluster) and set `MONGODB_URI`._
 4. **Build the backend**: _TODO: Maven command (e.g., `mvn clean install`) once `pom.xml` exists._
 5. **Run the app**: _TODO: run command and the local URL. Spring Boot serves both the backend and the htmx pages, so there is no separate frontend server._
 

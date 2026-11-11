@@ -40,7 +40,7 @@ _This guide is a starting template. The team should agree on each section and fi
 ## Coding Conventions
 
 - _TBD: Java style guide (e.g., Google Java Style)_
-- _TBD: Naming conventions for classes, endpoints, and database tables_
+- _TBD: Naming conventions for classes, endpoints, and MongoDB collections/fields_
 - _TBD: Formatting tool or IDE settings_
 
 ## Task Tracking

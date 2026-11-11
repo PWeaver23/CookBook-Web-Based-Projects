@@ -16,8 +16,9 @@ Track risks that could delay or block the project. Review this list during weekl
 Use these prompts to identify risks. Delete the ones that don't apply.
 
 - Learning curve for new technologies (Spring Boot, Spring Security, htmx)
-- Local setup differences across teammates (OS, Java version, PostgreSQL install)
-- Database schema changes after work has started
+- Local setup differences across teammates (OS, Java version, MongoDB install)
+- Team is new to MongoDB and document data modeling
+- Document structure changes after work has started
 - Credentials accidentally committed to Git
 - Merge conflicts from several people editing the same files
 - Scope larger than the time available

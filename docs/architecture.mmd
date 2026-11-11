@@ -27,7 +27,7 @@ flowchart TB
         data["Data Access Layer<br/><i>approach TBD</i>"]
     end
 
-    db[("PostgreSQL<br/>recipes, categories,<br/>users, shopping lists")]
+    db[("MongoDB<br/>collections: recipes, categories,<br/>users, shopping lists")]
 
     %% Request path
     user -->|"clicks, forms, search text"| ui
@@ -43,8 +43,8 @@ flowchart TB
 
     %% Data path
     features -->|"recipe, list, and user data"| data
-    data -->|"SQL queries"| db
-    db -->|"query results"| data
+    data -->|"MongoDB queries"| db
+    db -->|"documents (JSON-like)"| data
 
     %% Response path
     features -->|"data for the page"| views
