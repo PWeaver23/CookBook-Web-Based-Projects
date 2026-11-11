@@ -28,7 +28,7 @@ _TODO: How shopping lists relate to recipes and users._
 
 ## Diagram
 
-_TODO: Add a system diagram (e.g., browser → Spring Boot → PostgreSQL). A Mermaid diagram, image, or link is fine._
+See [`architecture.mmd`](architecture.mmd) for the planned architecture diagram (Mermaid). It shows the **planned** design and should be updated to match the implementation as the code is built.
 
 ## Data Model
 
