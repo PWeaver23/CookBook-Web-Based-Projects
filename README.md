@@ -1,5 +1,12 @@
 # CookBook Web App
 
+
+RUN
+    docker compose build --no-cache (use after changing anything to rebuild the project)
+    docker compose up -d
+    docker compose down (add -v to remove all stored volume data)
+
+
 > **Status: Implementation has not started.**
 > This repository currently contains only the folder structure, starter documentation, and configuration placeholders. There is no application code, no Maven build file (`pom.xml`), and no database collections or data model yet.
 

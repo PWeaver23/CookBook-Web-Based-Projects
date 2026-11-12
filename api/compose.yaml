@@ -1,4 +1,4 @@
-
+services:
   api:
     build: .
     container_name: PRO150-cookbook-api

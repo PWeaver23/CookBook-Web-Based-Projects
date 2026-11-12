@@ -1,50 +1,20 @@
 <!DOCTYPE html>
-<!-- The Dear Diary page, served by diary-ui on http://localhost:8081. app.js talks to the
-     separate diary-api program on http://localhost:8080/api/... -->
+<!-- The Online Cookbook page, served by cookbook-ui on http://localhost:8081. app.js talks to the
+     separate cookbook-api program on http://localhost:8080/api/... -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fantastic People Deep Freezer</title>
+    <title>Online Cookbook</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <main>
-    <h1>Fantastic People Deep Freezer</h1>
+    <h1>Online Cookbook</h1>
 
     <section class="card">
-        <h2 id="formTitle">New Person</h2>
-        <form id="entryForm">
-            <textarea id="text" rows="3" placeholder="Enter a characters name..."></textarea>
-            <select id="planet">
-                <option value="">(no home planet)</option>
-                <!-- app.js adds one option per planet from /api/planets -->
-            </select>
-            <select id="species">
-                <option value="">(no species)</option>
-                <!-- app.js adds one option per species from /api/species -->
-            </select>
-            <button type="submit" id="saveButton">Add person</button>
-            <fieldset id="abilitiesFieldset">
-                <legend>Abilities</legend>
-                <!-- app.js adds one checkbox per ability from /api/abilities -->
-                <div id="abilitiesOptions"></div>
-            </fieldset>
-            <button type="button" id="cancelButton" hidden>Cancel</button>
-        </form>
-        <p id="error" class="error"></p>
     </section>
 
-    <section class="card">
-        <form id="searchForm">
-            <input id="search" placeholder="Search entries">
-            <button type="submit">Search</button>
-            <button type="button" id="clearSearch">Show all</button>
-        </form>
-        <ul id="entries" class="entries">
-            <!-- app.js adds one <li> per entry -->
-        </ul>
-    </section>
 
 </main>
 <script src="app.js"></script>
