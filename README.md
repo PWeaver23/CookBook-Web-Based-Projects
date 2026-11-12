@@ -14,7 +14,7 @@ RUN
 
 A web-based cookbook application where users can create an account, manage recipes, and build shopping lists from those recipes.
 
-_TODO: Replace this paragraph with the summary from the team's project proposal (goals, target users, main features)._
+
 
 ## Planned Stack
 
@@ -56,9 +56,9 @@ CookBook-Web-Based-Projects/
 │   └── src/
 │       ├── main/
 │       │   ├── java/com/cookbook/
-│       │   │   ├── recipes/        ← Recipe features
-│       │   │   ├── users/          ← User accounts and authentication
-│       │   │   ├── shoppinglists/  ← Shopping list features
+│       │   │   ├── controller/        ← All app controllers
+│       │   │   ├── data/          ← mongoDB repositories
+│       │   │   ├── model/  ← POJO's for database documents
 │       │   │   └── config/         ← App-wide config (e.g., Spring Security setup)
 │       │   └── resources/
 │       │       ├── application.properties  ← DB config placeholders (no secrets)
@@ -66,14 +66,24 @@ CookBook-Web-Based-Projects/
 │       │       └── static/css/             ← Stylesheets
 │       └── test/java/com/cookbook/         ← Tests mirror the main packages
 │
-└── docs/
-    ├── architecture.md        ← How the system fits together
-    ├── design-decisions.md    ← Log of key decisions (including frontend choice)
-    ├── technical-risks.md     ← Risks and mitigation plans
-    ├── api/README.md          ← API endpoint documentation
-    └── progress/              ← Weekly progress reports
-        ├── README.md
-        └── week-template.md
+├── docs/
+│   ├── architecture.md        ← How the system fits together
+│   ├── design-decisions.md    ← Log of key decisions (including frontend choice)
+│   ├── technical-risks.md     ← Risks and mitigation plans
+│   ├── api/README.md          ← API endpoint documentation
+│   └── progress/              ← Weekly progress reports
+│       ├── README.md
+│       └── week-template.md
+│
+└── ui/
+    └── src/
+        ├── main/
+        │   ├── java/com/cookbook/
+        │   └── resources/
+        │       ├── application.properties  ← ui app properties
+        │       ├── templates/              
+        │       └── static/             ← JS, Stylesheets, HTML pages and htmx fragments
+        └── test/java/com/cookbook/
 ```
 
 `.gitkeep` files are empty placeholders that let Git track otherwise-empty folders. Delete one once its folder has real files.

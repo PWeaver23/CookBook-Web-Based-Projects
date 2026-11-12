@@ -8,9 +8,9 @@ This follows the standard Maven directory layout, organized **by feature** so ea
 
 | Path | Purpose |
 | ---- | ------- |
-| `src/main/java/com/cookbook/recipes/` | Everything related to recipes |
-| `src/main/java/com/cookbook/users/` | User accounts, registration, login, and authentication |
-| `src/main/java/com/cookbook/shoppinglists/` | Shopping lists |
+| `src/main/java/com/cookbook/controller/` | Everything related to controllers |
+| `src/main/java/com/cookbook/data/` | MongoDB repositories |
+| `src/main/java/com/cookbook/model/` | POJOs |
 | `src/main/java/com/cookbook/config/` | App-wide configuration (e.g., Spring Security setup) |
 | `src/main/resources/` | `application.properties` and other non-Java resources |
 | `src/main/resources/templates/` | HTML pages and htmx partial fragments (rendered by Spring Boot) |
