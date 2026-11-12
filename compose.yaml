@@ -1,0 +1,4 @@
+# master compose.yaml
+include:
+  - ./api/compose.yaml
+  - ./ui/compose.yaml

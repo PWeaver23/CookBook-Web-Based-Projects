@@ -1,0 +1,8 @@
+services:
+  ui:
+    build: .
+    container_name: PRO150-cookbook-ui
+    environment:
+      - TZ=America/Denver   # show times in Mountain time, not UTC
+    ports:
+      - "8081:8081"
