@@ -38,3 +38,32 @@ _TBD: Choose the HTML templating engine (e.g., Thymeleaf) and how htmx is includ
 ## Configuration
 
 `src/main/resources/application.properties` reads database settings from environment variables (see `/.env.example` in the project root). Never put real credentials in this file.
+
+
+
+
+
+## changelog 11/13/2026
+
+added the api endpoints for both recipes and accounts
+accounts supports 
+    POST   e.g.  `POST localhost:8080/api/accounts` takes post requests in JSON
+    GET by id   e.g.  `GET localhost:8080/api/accounts/1` 
+recipes supports 
+    POST    e.g.  `POST localhost:8080/api/recipes` takes post requests in JSON
+    GET    e.g.  `GET localhost:8080/api/recipes`
+    GET with a search keyword    e.g.  `GET localhost:8080/api/recipes?search={keyword}`
+    GET by id    e.g.  `GET localhost:8080/api/recipes/2`
+    GET by a category    e.g.  `GET localhost:8080/api/recipes/category/LUNCH`
+
+
+added ApiErrors.java
+blanket class to handle any exceptions that may come up during HTTP requests
+
+
+added the POJO models for Recipe and Account as well as a RecipeType enum
+will need to edit later to allow for storage in MongoDB
+
+
+added the in memory storage models for Recipe and Account
+will need to change to database storage later
