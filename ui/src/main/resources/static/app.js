@@ -1,64 +1,53 @@
-const API = "http://localhost:8080/api/recipes";
+const RECIPE_API = "http://localhost:8080/api/recipes";
+const ACCOUNT_API = "http://localhost:8080/api/accounts";
 
 console.log("app.js loaded");
 
-async function loadRecipes() {
-  const response = await fetch(API);          // GET /api/recipes
-  const recipes = await response.json();      // an array now
-
-  const container = document.getElementById("recipes");
+async function loadRecipeCards() {
+  const container = document.getElementById("recipeCards");
   container.innerHTML = "";
-  recipes.forEach(recipe => container.append(buildRecipeCard(recipe)));
+
+  try {
+    const response = await fetch(RECIPE_API);
+    if (!response.ok) throw new Error(`Recipes request failed: ${response.status}`);
+
+    const recipes = await response.json();
+    const cards = await Promise.all(recipes.map(buildRecipeCard));
+    container.append(...cards);
+  } catch (err) {
+    console.error(err);
+    const msg = document.createElement("p");
+    msg.textContent = "Couldn't load recipes right now.";
+    container.append(msg);
+  }
 }
 
-function buildRecipeCard(recipe) {
+async function buildRecipeCard(recipe) {
   const card = document.createElement("section");
   card.className = "card";
 
   const title = document.createElement("h2");
-  title.textContent = recipe.title;
+  const recipeLink = document.createElement("a");
+  recipeLink.href = `recipe.html?id=${recipe.id}`;
+  recipeLink.textContent = recipe.title;
+  title.appendChild(recipeLink);
 
-  const heading = document.createElement("h3");
-  heading.textContent = "Ingredients";
+  const body = document.createElement("p");
+  body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()} · Author: ${await authorName(recipe.postedById)}`;
 
-  const list = document.createElement("ul");
-
-  recipe.ingredients.forEach((name, i) => {
-    const li = document.createElement("li");
-    const id = `r${recipe.id}-ing-${i}`;      // unique across recipes
-
-    const box = document.createElement("input");
-    box.type = "checkbox";
-    box.id = id;
-    box.value = name;
-    box.addEventListener("change", onToggle);
-
-    const label = document.createElement("label");
-    label.htmlFor = id;
-    label.textContent = name;
-
-    li.append(box, label);
-    list.append(li);
-  });
-
-  card.append(title, heading, list);
+  card.append(title, body);
   return card;
 }
 
-function onToggle(event) {
-  const box = event.target;
-  const items = document.getElementById("shopping-items");
-
-  if (box.checked) {
-    const li = document.createElement("li");
-    li.dataset.for = box.id;            // remember which checkbox this came from
-    li.textContent = box.value;
-    items.append(li);
-  } else {
-    items.querySelector(`[data-for="${box.id}"]`)?.remove();
+async function authorName(postedById) {
+  try {
+    const res = await fetch(`${ACCOUNT_API}/${postedById}`);
+    if (!res.ok) return "unknown author";
+    const data = await res.json();
+    return data.email ?? "unknown author";
+  } catch {
+    return "unknown author";
   }
-
-  document.getElementById("shopping-list").hidden = items.children.length === 0;
 }
 
-loadRecipes();
+loadRecipeCards();

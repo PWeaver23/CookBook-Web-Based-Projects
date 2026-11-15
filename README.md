@@ -2,7 +2,9 @@
 
 
 RUN
-    docker compose build --no-cache (use after changing anything to rebuild the project)
+    docker compose build --no-cache (use if recetly made changes aren't appearing on site)
+    
+    docker compose build (use after changing aything to rebuild the project)
     docker compose up -d
     docker compose down (add -v to remove all stored volume data)
 
