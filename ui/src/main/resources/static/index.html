@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- The Online Cookbook page, served by cookbook-ui on http://localhost:8081. app.js talks to the
-     separate cookbook-api program on http://localhost:8080/api/... -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,9 +10,11 @@
 <main>
     <h1>Online Cookbook</h1>
 
-    <section class="card">
-    </section>
-
+     <div id="recipes"></div>
+     <section class="card" id="shopping-list" hidden>
+    <h3>Shopping List</h3>
+    <ul id="shopping-items"></ul>
+</section>
 
 </main>
 <script src="app.js"></script>
