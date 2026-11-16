@@ -34,8 +34,6 @@ async function buildRecipeCard(recipe) {
 
   const body = document.createElement("p");
   body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()} · Author: ${await authorName(recipe.postedById)}`;
-
-  card.append(title, body);
   return card;
 }
 
