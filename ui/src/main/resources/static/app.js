@@ -41,7 +41,19 @@ function buildRecipeCard(recipe) {
     list.append(li);
   });
 
-  card.append(title, heading, list);
+   const stepsHeading = document.createElement("h3");
+  stepsHeading.textContent = "Steps";
+
+  const stepsList = document.createElement("ol");
+  stepsList.className = "steps";
+
+  recipe.steps.forEach(step => {
+    const li = document.createElement("li");
+    li.textContent = step;
+    stepsList.append(li);
+  });
+
+  card.append(title, heading, list, stepsHeading, stepsList);
   return card;
 }
 
