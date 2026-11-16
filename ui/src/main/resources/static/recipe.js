@@ -40,7 +40,12 @@ function buildRecipeCard(recipe) {
   const heading = document.createElement("h3");
   heading.textContent = "Ingredients";
 
+  const text = document.createElement("p");
+  text.textContent = 'Click the checkboxes to add items to your shopping list.';
+  text.id = "ingredient-instructions";
+
   const list = document.createElement("ul");
+  list.className = "ingredients";
 
   (recipe.ingredients ?? []).forEach((name, i) => {
     const li = document.createElement("li");
@@ -72,7 +77,7 @@ function buildRecipeCard(recipe) {
       stepsList.append(li);
   });
 
-  card.append(title, heading, list, stepsHeading, stepsList);
+  card.append(title, heading, text, list, stepsHeading, stepsList);
   return card;
 }
 
