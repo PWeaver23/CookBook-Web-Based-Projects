@@ -37,7 +37,6 @@ public class RecipeController {
     public record RecipeRequest(
         @NotBlank(message = "Title is required") String title,
         @NotNull(message = "Recipe type is required") RecipeType recipeType,
-        // Long (not long) so a missing value arrives as null and gets the "Posted by is required" message
         @NotNull(message = "Posted by is required") @Positive(message = "Posted by is required") Long postedById,
         @NotNull(message = "At least one ingredient is required") List<String> ingredients,
         @NotNull(message = "At least one step is required") List<String> steps

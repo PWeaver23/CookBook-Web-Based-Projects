@@ -15,7 +15,7 @@ public class Recipe {
 
     String title;
     RecipeType recipeType;
-    long postedById;
+    Long postedById;
     List<String> ingredients;
     List<String> steps;
 
