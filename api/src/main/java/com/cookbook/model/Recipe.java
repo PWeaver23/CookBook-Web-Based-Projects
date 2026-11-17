@@ -2,10 +2,16 @@ package com.cookbook.model;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 // Represents a recipe, with an id, title, recipe type, posted by id, list of ingredients, and list of steps.
+// Stored in the MongoDB "recipes" collection. MongoDB creates the id (a String) when a recipe is first saved.
+@Document(collection = "recipes")
 public class Recipe {
-    
-    long id;
+
+    @Id
+    String id;
 
     String title;
     RecipeType recipeType;
@@ -15,8 +21,8 @@ public class Recipe {
 
     public Recipe() { }
 
-    public Recipe(long id, String title, RecipeType recipeType, long postedById, List<String> ingredients, List<String> steps) {
-        this.id = id;
+    // Used when creating a new recipe: no id yet, MongoDB assigns one on save.
+    public Recipe(String title, RecipeType recipeType, long postedById, List<String> ingredients, List<String> steps) {
         this.title = title;
         this.recipeType = recipeType;
         this.postedById = postedById;
@@ -24,11 +30,11 @@ public class Recipe {
         this.steps = steps;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

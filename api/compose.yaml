@@ -4,6 +4,20 @@ services:
     container_name: PRO150-cookbook-api
     environment:
       - TZ=America/Denver   # show times in Mountain time, not UTC
+      - MONGODB_URI=mongodb://mongo:27017   # "mongo" = the database service below
+      - MONGODB_DATABASE=cookbook_db
     ports:
       - "8080:8080"
+    depends_on:
+      - mongo
 
+  mongo:
+    image: mongo:8.0
+    container_name: PRO150-cookbook-mongo
+    ports:
+      - "27017:27017"   # lets you connect from this computer (MongoDB Compass, or running the API outside Docker)
+    volumes:
+      - mongo-data:/data/db   # keeps recipes when containers restart; "docker compose down -v" deletes them
+
+volumes:
+  mongo-data:
