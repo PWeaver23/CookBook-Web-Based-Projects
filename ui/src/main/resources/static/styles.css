@@ -30,13 +30,35 @@ button { cursor: pointer; }
     margin: 1rem 0;
 }
 
-ul.entries { list-style: none; padding: 0; }
-ul.entries li {
-    background: #fff;
-    border: 1px solid #d9e2ec;
-    border-radius: 6px;
-    padding: .75rem;
+#ingredient-instructions {
+    padding-left: 23px;
+}
+
+ul.ingredients {
+    list-style: none;
+    padding-left: 23px;
     margin: .5rem 0;
 }
+
+ul.ingredients li {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .15rem 0;
+}
+
+ul.ingredients input[type="checkbox"] {
+    margin: 0;
+    flex: 0 0 auto;
+    min-width: 0;
+    width: auto;
+    padding: 0;
+}
+
+ul.ingredients label {
+    cursor: pointer;
+}
+
 .meta { color: #7b8794; font-size: .9rem; }
 .actions { margin-top: .5rem; display: flex; gap: .5rem; }
+
