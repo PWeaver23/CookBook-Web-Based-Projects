@@ -8,13 +8,17 @@ RUN
     docker compose up -d
     docker compose down (add -v to remove all stored volume data)
 
+To query database specifically
+    docker exec -it PRO150-cookbook-mongo mongosh cookbook_db 
+    db.recipes.find()
 
-> **Status: Implementation has not started.**
-> This repository currently contains only the folder structure, starter documentation, and configuration placeholders. There is no application code, no Maven build file (`pom.xml`), and no database collections or data model yet.
 
 ## Project Summary
 
-A web-based cookbook application where users can create an account, manage recipes, and build shopping lists from those recipes.
+We will be making an online cookbook that collects and stores recipes found around the web.  
+Recipes will be categorized for breakfast, lunch, dinner, snack, and dessert. 
+Users will be able to select ingredients from the recipe to add to an onsite shopping list.  
+Users will be able to add and edit their own recipe to the site, choosing to make them public or keep them private. 
 
 
 
@@ -27,18 +31,17 @@ A web-based cookbook application where users can create an account, manage recip
 | Build tool     | Maven                                    | Decided     |
 | Database       | MongoDB                                  | Decided     |
 | Auth/Security  | Spring Security                          | Decided     |
-| Frontend       | htmx (server-rendered HTML from Spring Boot) | Decided |
-| HTML templating | _TBD_ (e.g., Thymeleaf)                 | **Undecided** |
+| Frontend       | htmx (server-rendered HTML)              | Decided     |
 
-Decisions are tracked in [docs/design-decisions.md](docs/design-decisions.md).
+
 
 ## Prerequisites
 
-Install these before setup begins (versions are placeholders; the team should confirm them):
+Install these before setup begins:
 
-- **JDK**: version _TBD_ (e.g., 17 or 21 LTS)
-- **Maven**: version _TBD_ (or use the Maven Wrapper once it is added)
-- **MongoDB**: version _TBD_ (local install, Docker, or a free MongoDB Atlas cluster; team to decide)
+- **JDK**: version 21+
+- **Maven**: version 3.9.16 
+- **MongoDB**: version 8.0 (installs through docker)
 - **Git**
 - **IDE**: IntelliJ IDEA recommended
 
@@ -67,15 +70,12 @@ CookBook-Web-Based-Projects/
 │       │       ├── templates/              ← HTML pages and htmx fragments
 │       │       └── static/css/             ← Stylesheets
 │       └── test/java/com/cookbook/         ← Tests mirror the main packages
+│                 └── controller  ← Test cases for our api controllers
 │
 ├── docs/
 │   ├── architecture.md        ← How the system fits together
 │   ├── design-decisions.md    ← Log of key decisions (including frontend choice)
-│   ├── technical-risks.md     ← Risks and mitigation plans
-│   ├── api/README.md          ← API endpoint documentation
-│   └── progress/              ← Weekly progress reports
-│       ├── README.md
-│       └── week-template.md
+│   └── technical-risks.md     ← Risks and mitigation plans
 │
 └── ui/
     └── src/
@@ -88,27 +88,6 @@ CookBook-Web-Based-Projects/
         └── test/java/com/cookbook/
 ```
 
-`.gitkeep` files are empty placeholders that let Git track otherwise-empty folders. Delete one once its folder has real files.
-
-## Setup
-
-_These steps are placeholders and will be filled in once implementation starts._
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd CookBook-Web-Based-Projects
-   ```
-2. **Create your local environment file**
-   ```bash
-   cp .env.example .env
-   ```
-   Then edit `.env` with your own local database settings. **Never commit `.env`.**
-3. **Set up MongoDB**: _TODO: steps to start MongoDB locally (or connect to the shared cluster) and set `MONGODB_URI`._
-4. **Build the backend**: _TODO: Maven command (e.g., `mvn clean install`) once `pom.xml` exists._
-5. **Run the app**: _TODO: run command and the local URL. Spring Boot serves both the backend and the htmx pages, so there is no separate frontend server._
-
-> Note: Spring Boot does not read `.env` files automatically. The team should decide how to load these variables, for example with IntelliJ run-configuration environment variables, an EnvFile plugin, or exporting them in your shell. Record the choice in `docs/design-decisions.md`.
 
 ## Documentation
 
@@ -121,6 +100,8 @@ _These steps are placeholders and will be filled in once implementation starts._
 
 ## Team
 
-| Name | Role / Focus Area |
-| ---- | ----------------- |
-| _TBD_ | _TBD_            |
+| Name | 
+| ---- |
+| Jaxon Shaw | 
+| Kenshin Revelo | 
+| Preston Weaver |
