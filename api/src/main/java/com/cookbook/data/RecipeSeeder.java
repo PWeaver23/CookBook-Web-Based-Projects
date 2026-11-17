@@ -40,7 +40,7 @@ public class RecipeSeeder implements ApplicationRunner {
                 List.of("1 egg", "1 pinch of salt", "1 Tbsp of oil"),
                 List.of("Heat up oil in the pan.", "Add egg and the salt.", "Flip the egg.", "Eat the egg.")),
 
-            new Recipe("Sinigang Pork Ribs", RecipeType.DINNER, 3,
+            new Recipe("Sinigang Pork Ribs", RecipeType.DINNER, 1,
             List.of(
                 "2 lbs (900g) pork stew meat",
                 "4 cups (1L) water, for cooking",
