@@ -62,3 +62,17 @@ ul.ingredients label {
 .meta { color: #7b8794; font-size: .9rem; }
 .actions { margin-top: .5rem; display: flex; gap: .5rem; }
 
+.back-button {
+    display: inline-block;
+    margin-top: .5rem;
+    padding: .4rem .8rem;
+    background: #fff;
+    color: #1f3a5f;
+    border: 1px solid #d9e2ec;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background: #e4ecf5;
+}
