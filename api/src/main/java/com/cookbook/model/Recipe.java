@@ -11,13 +11,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Recipe {
 
     @Id
-    String id;
+    private String id;
 
-    String title;
-    RecipeType recipeType;
-    Long postedById;
-    List<String> ingredients;
-    List<String> steps;
+    private String title;
+    private RecipeType recipeType;
+    private Long postedById;
+    private List<String> ingredients;
+    private List<String> steps;
 
     public Recipe() { }
 

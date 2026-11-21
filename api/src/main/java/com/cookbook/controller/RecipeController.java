@@ -3,11 +3,9 @@ package com.cookbook.controller;
 import com.cookbook.data.RecipeRepository;
 import com.cookbook.model.Recipe;
 import com.cookbook.model.RecipeType;
+import com.cookbook.dto.RecipeRequest;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,15 +30,6 @@ public class RecipeController {
     public RecipeController(RecipeRepository recipes) {
         this.recipes = recipes;
     }
-
-    // Represents the request body for creating a new recipe, with validation annotations to ensure required fields are present and valid.
-    public record RecipeRequest(
-        @NotBlank(message = "Title is required") String title,
-        @NotNull(message = "Recipe type is required") RecipeType recipeType,
-        @NotNull(message = "Posted by is required") @Positive(message = "Posted by is required") Long postedById,
-        @NotNull(message = "At least one ingredient is required") List<String> ingredients,
-        @NotNull(message = "At least one step is required") List<String> steps
-    ) { }
 
     // GET /api/recipes?search=... returns all recipes, or those whose title contains the search text (case-insensitive)
     // GET /api/recipes returns all recipes
