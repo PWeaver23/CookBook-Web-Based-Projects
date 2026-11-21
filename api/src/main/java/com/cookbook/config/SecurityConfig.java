@@ -53,7 +53,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/recipes").permitAll()           // anyone can get recipes
+                .requestMatchers(HttpMethod.GET, "/api/recipes/**").permitAll()           // anyone can get all recipes
                 .requestMatchers(HttpMethod.POST, "/api/recipes").authenticated()     // only logged-in users can create recipes
                 .requestMatchers(HttpMethod.PUT, "/api/recipes/**").authenticated()  // only logged-in users can update their own recipes
                 .requestMatchers(HttpMethod.DELETE, "/api/recipes/**").authenticated() // only logged-in users can delete their own recipes

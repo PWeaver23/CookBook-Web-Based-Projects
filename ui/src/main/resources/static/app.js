@@ -33,21 +33,23 @@ async function buildRecipeCard(recipe) {
   title.appendChild(recipeLink);
 
   const body = document.createElement("p");
-  body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()} · Author: ${await authorName(recipe.postedById)}`;
+  // body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()} · Author: ${await authorName(recipe.postedById)}`;
+  body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()}`;
   
   card.append(title, body);
   return card;
 }
 
-async function authorName(postedById) {
-  try {
-    const res = await fetch(`${ACCOUNT_API}/${postedById}`);
-    if (!res.ok) return "unknown author";
-    const data = await res.json();
-    return data.email ?? "unknown author";
-  } catch {
-    return "unknown author";
-  }
-}
+//TODO : add a function to get the author name from the account API, given the postedById. If the fetch fails, return nothing".
+// async function authorName(postedById) {
+//   try {
+//     const res = await fetch(`${ACCOUNT_API}/${postedById}`);
+//     if (!res.ok) return "unknown author";
+//     const data = await res.json();
+//     return data.email ?? "unknown author";
+//   } catch {
+//     return "unknown author";
+//   }
+// }
 
 loadRecipeCards();
