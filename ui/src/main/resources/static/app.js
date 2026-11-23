@@ -1,5 +1,5 @@
 const RECIPE_API = "http://localhost:8080/api/recipes";
-const ACCOUNT_API = "http://localhost:8080/api/accounts";
+const ACCOUNT_API = "http://localhost:8080/api/auth";
 
 console.log("app.js loaded");
 
@@ -33,23 +33,25 @@ async function buildRecipeCard(recipe) {
   title.appendChild(recipeLink);
 
   const body = document.createElement("p");
-  // body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()} · Author: ${await authorName(recipe.postedById)}`;
-  body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()}`;
+  body.textContent = `Type: ${String(recipe.recipeType ?? "").toLowerCase()}${await authorName(recipe.postedById)}`;
   
   card.append(title, body);
   return card;
 }
 
-//TODO : add a function to get the author name from the account API, given the postedById. If the fetch fails, return nothing".
-// async function authorName(postedById) {
-//   try {
-//     const res = await fetch(`${ACCOUNT_API}/${postedById}`);
-//     if (!res.ok) return "unknown author";
-//     const data = await res.json();
-//     return data.email ?? "unknown author";
-//   } catch {
-//     return "unknown author";
-//   }
-// }
+async function authorName(postedById) {
+  // console.log('Fetching author name for id:', postedById);
+  try {
+    const res = await fetch(`${ACCOUNT_API}/name/${postedById}`);
+    if (!res.ok) return " · Author: unknown author";
+    const text = await res.text();
+    const data = JSON.parse(text);
+    username = data.username;
+    if (username == "admin") return "";
+    return " · Author: " + (username ?? "unknown author");
+  } catch {
+    return "";
+  }
+}
 
 loadRecipeCards();

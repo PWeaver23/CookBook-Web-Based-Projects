@@ -57,6 +57,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/recipes").authenticated()     // only logged-in users can create recipes
                 .requestMatchers(HttpMethod.PUT, "/api/recipes/**").authenticated()  // only logged-in users can update their own recipes
                 .requestMatchers(HttpMethod.DELETE, "/api/recipes/**").authenticated() // only logged-in users can delete their own recipes
+                .requestMatchers(HttpMethod.GET, "/api/auth/name/**").permitAll() // anyone can get usernames by id
                 .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated())                                       // /me: log in
             .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(rolesFromToken())))

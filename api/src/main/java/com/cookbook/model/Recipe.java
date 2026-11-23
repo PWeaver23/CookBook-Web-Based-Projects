@@ -22,7 +22,7 @@ public class Recipe {
     public Recipe() { }
 
     // Used when creating a new recipe: no id yet, MongoDB assigns one on save.
-    public Recipe(String title, RecipeType recipeType, long postedById, List<String> ingredients, List<String> steps) {
+    public Recipe(String title, RecipeType recipeType, Long postedById, List<String> ingredients, List<String> steps) {
         this.title = title;
         this.recipeType = recipeType;
         this.postedById = postedById;
@@ -54,11 +54,11 @@ public class Recipe {
         this.recipeType = recipeType;
     }
 
-    public long getPostedById() {
+    public Long getPostedById() {
         return postedById;
     }
 
-    public void setPostedById(long postedById) {
+    public void setPostedById(Long postedById) {
         this.postedById = postedById;
     }
 

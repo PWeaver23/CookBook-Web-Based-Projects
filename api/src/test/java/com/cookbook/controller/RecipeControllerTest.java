@@ -50,7 +50,7 @@ class RecipeControllerTest {
 
     // Builds a recipe that looks like one loaded from MongoDB (it has an id).
     private static Recipe recipe(String id, String title, RecipeType type) {
-        Recipe recipe = new Recipe(title, type, 1, List.of("1 egg", "1 pinch of salt"), List.of("Crack the egg.", "Add the salt."));
+        Recipe recipe = new Recipe(title, type, 1L, List.of("1 egg", "1 pinch of salt"), List.of("Crack the egg.", "Add the salt."));
         recipe.setId(id);
         return recipe;
     }

@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Account {
 
     @Id
-    private long id;
+    private Long id;
     
     private String username;
     private String password_hash;
@@ -27,11 +27,19 @@ public class Account {
         this.favoriteRecipes = favoriteRecipes;
     }
 
-    public long getId() {
+    public Account(Long id, String username, String password_hash, String role, HashSet<String> favoriteRecipes) {
+        this.id = id;
+        this.username = username;
+        this.password_hash = password_hash;
+        this.role = role;
+        this.favoriteRecipes = favoriteRecipes;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

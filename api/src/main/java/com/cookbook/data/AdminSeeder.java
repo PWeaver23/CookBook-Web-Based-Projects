@@ -31,7 +31,7 @@ public class AdminSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) {
         if (!users.existsByUsername("admin")) {
-            users.save(new Account("admin", passwordEncoder.encode(adminPassword), "ADMIN", new HashSet<>()));
+            users.save(new Account(1L, "admin", passwordEncoder.encode(adminPassword), "ADMIN", new HashSet<>()));
         }
     }
 }

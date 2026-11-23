@@ -3,6 +3,7 @@ package com.cookbook.data;
 import com.cookbook.model.Account;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Optional;
 
@@ -12,5 +13,6 @@ public interface UserRepository extends MongoRepository<Account, String> {
 
     boolean existsByUsername(String username);              // at register: is the name taken?
     
-    Optional<Account> findById(long id); 
+    @Query(value = "{ '_id': ?0 }", fields = "{ 'username': 1 }")
+    String findUsernameById(Long id);
 }

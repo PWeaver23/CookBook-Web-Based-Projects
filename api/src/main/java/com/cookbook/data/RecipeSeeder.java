@@ -32,15 +32,15 @@ public class RecipeSeeder implements ApplicationRunner {
         }
         // Steps have no "Step 1" prefix: the recipe page numbers them itself.
         recipes.saveAll(List.of(
-            new Recipe("Salted Flour", RecipeType.SNACK, 1,
+            new Recipe("Salted Flour", RecipeType.SNACK, 1L,
                 List.of("1/2 teaspoon salt", "1 cup flour"),
                 List.of("Mix the salt into the flour.", "Eat the creation.")),
 
-            new Recipe("Salted egg", RecipeType.SNACK, 1,
+            new Recipe("Salted egg", RecipeType.SNACK, 1L,
                 List.of("1 egg", "1 pinch of salt", "1 Tbsp of oil"),
                 List.of("Heat up oil in the pan.", "Add egg and the salt.", "Flip the egg.", "Eat the egg.")),
 
-            new Recipe("Sinigang Pork Ribs", RecipeType.DINNER, 1,
+            new Recipe("Sinigang Pork Ribs", RecipeType.DINNER, 1L,
             List.of(
                 "2 lbs (900g) pork stew meat",
                 "4 cups (1L) water, for cooking",

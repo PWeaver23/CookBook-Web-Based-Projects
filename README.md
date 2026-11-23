@@ -22,7 +22,6 @@ Users will be able to select ingredients from the recipe to add to an onsite sho
 Users will be able to add and edit their own recipe to the site, choosing to make them public or keep them private. 
 
 
-
 ## Planned Stack
 
 | Layer          | Choice                                   | Status      |
