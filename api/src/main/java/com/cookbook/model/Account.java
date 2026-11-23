@@ -20,6 +20,12 @@ public class Account {
 
     public Account() { }
 
+    public Account(String username, String password_hash, String role) {
+        this.username = username;
+        this.password_hash = password_hash;
+        this.role = role;
+    }
+
     public Account(String username, String password_hash, String role, HashSet<String> favoriteRecipes) {
         this.username = username;
         this.password_hash = password_hash;
