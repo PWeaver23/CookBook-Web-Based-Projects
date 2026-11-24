@@ -1,13 +1,16 @@
 package com.cookbook.controller;
 
 import com.cookbook.data.RecipeRepository;
+import com.cookbook.data.UserRepository;
+import com.cookbook.model.Account;
 import com.cookbook.model.Recipe;
 import com.cookbook.model.RecipeType;
 import com.cookbook.dto.RecipeRequest;
+import com.cookbook.dto.RecipeResponse;
 
-import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
 import java.util.List;
 
 //API endpoint for recipes, stored in the MongoDB "recipes" collection.
@@ -26,9 +28,11 @@ import java.util.List;
 public class RecipeController {
 
     private final RecipeRepository recipes;
+    private final UserRepository users;
 
-    public RecipeController(RecipeRepository recipes) {
+    public RecipeController(RecipeRepository recipes, UserRepository users) {
         this.recipes = recipes;
+        this.users = users;
     }
 
     // GET /api/recipes?search=... returns all recipes, or those whose title contains the search text (case-insensitive)
@@ -57,9 +61,15 @@ public class RecipeController {
 
     // POST /api/recipes creates a new recipe, returning 201 Created with a Location header pointing at the new entry
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody RecipeRequest request) {
-        Recipe created = recipes.save(new Recipe(request.title(), request.recipeType(), request.postedById(), request.ingredients(), request.steps()));
-        // 201 Created, with a Location header pointing at the new entry
-        return ResponseEntity.created(URI.create("/api/recipes/" + created.getId())).body(created);
+    public RecipeResponse create(@RequestBody RecipeRequest body, Authentication caller) {
+        Account user = users.findByUsername(caller.getName()).orElseThrow();
+        Recipe recipe = new Recipe(
+            body.title(),
+            RecipeType.textToType(body.recipeType()),
+            user.getId(),            // <-- from the token, not the body
+            body.ingredients(),
+            body.steps()
+        );
+        return RecipeResponse.from(recipes.save(recipe));
     }
 }

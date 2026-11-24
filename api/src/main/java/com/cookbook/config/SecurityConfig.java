@@ -58,6 +58,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/api/recipes/**").authenticated()  // only logged-in users can update their own recipes
                 .requestMatchers(HttpMethod.DELETE, "/api/recipes/**").authenticated() // only logged-in users can delete their own recipes
                 .requestMatchers(HttpMethod.GET, "/api/auth/name/**").permitAll() // anyone can get usernames by id
+                .requestMatchers(HttpMethod.GET, "/api/types").permitAll() // anyone can get recipe types
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated())                                       // /me: log in
             .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(rolesFromToken())))
@@ -132,7 +134,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cors = new CorsConfiguration();
         cors.setAllowedOrigins(List.of("http://localhost:8081"));
-        cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+        cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         cors.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/api/**", cors);

@@ -10,10 +10,50 @@
 <main>
     <h1>Online Cookbook</h1>
 
-    <div id="authBar">
+    <div id="utilityBar">
+        <div class="utility-buttons">
+            <button id="openLogin" type="button" popovertarget="loginPopover">Log in</button>
+            <button id="logoutButton" type="button" hidden>Log out</button>
+            <button id="addRecipeButton" type="button" popovertarget="addRecipePopover" hidden>Add Recipe</button>
+        </div>
         <span id="welcome" hidden></span>
-        <button id="openLogin" type="button" popovertarget="loginPopover">Log in</button>
-        <button id="logoutButton" type="button" hidden>Log out</button>
+    </div>
+
+    <div id="addRecipePopover" popover>
+        <section class="card" id="addRecipeCard">
+            <h2>Add Recipe</h2>
+            <form id="addRecipeForm">
+                <input id="recipeName" placeholder="Recipe Name" required>
+
+                <!-- dropdown for recipe types, loaded in js from the enum -->
+                <select id="recipeType" required>
+                    <option value=""></option>
+                    <!-- app.js adds one option per type from RecipeType.java -->
+                </select>
+
+                <!-- one input for ingredient (two boxes [ingredient] - [measurement]) - button to add another input below -->
+                <div id="ingredientRows">
+                    <span class="ingredient-row">
+                        <input placeholder="Ingredient name (Flour)" required>
+                        <input placeholder="Ingredient measure (1/3 Cup)" required>
+                    </span>
+                </div>
+                <button type="button" id="addIngredientRow" >Add Row</button>
+
+                <!-- one input for step - button to add another input below -->
+                <div id="stepRows">
+                    <span class="step-row">
+                        <input id="step" placeholder="Recipe step" required>
+                    </span>
+                </div>
+                <button type="button" id="addStepRow">Add Row</button>
+
+                <div class="form-actions">
+                    <button type="submit" id="finishRecipe">Add Recipe</button>
+                    <button type="button" id="closeAddButton">Close</button>
+                </div>
+            </form>
+        </section>
     </div>
 
     <div id="loginPopover" popover>
