@@ -10,23 +10,26 @@
 <main>
     <h1>Online Cookbook</h1>
 
-    <button popovertarget="logInButton">Log in</button>
-
-    <div id="logInButton" popover>
-        <section class="card" id="loginCard">
-        <h2>Log in</h2>
-        <form id="loginForm">
-            <input id="username" placeholder="Username" autocomplete="username">
-            <input id="password" type="password" placeholder="Password (8+ characters)" autocomplete="current-password">
-            <button type="submit">Log in</button>
-            <button type="button" id="registerButton">Register</button>
-            <button popovertarget="myPopover" popovertargetaction="hide">Close</button>
-        </form>
-        <p id="loginMessage" class="error"></p>
-    </section>
+    <div id="authBar">
+        <span id="welcome" hidden></span>
+        <button id="openLogin" type="button" popovertarget="loginPopover">Log in</button>
+        <button id="logoutButton" type="button" hidden>Log out</button>
     </div>
-    
-    
+
+    <div id="loginPopover" popover>
+        <section class="card" id="loginCard">
+            <h2>Log in</h2>
+            <form id="loginForm">
+                <input id="username" placeholder="Username" autocomplete="username">
+                <input id="password" type="password" placeholder="Password (8+ characters)" autocomplete="current-password">
+                <button type="submit">Log in</button>
+                <button type="button" id="registerButton">Register</button>
+                <button type="button" popovertarget="loginPopover" popovertargetaction="hide">Close</button>
+            </form>
+            <p id="loginMessage" class="error"></p>
+        </section>
+    </div>
+
     <div id="recipeCards"></div>
 
 </main>
