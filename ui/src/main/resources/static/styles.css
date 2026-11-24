@@ -34,6 +34,44 @@ button { cursor: pointer; }
     padding-left: 23px;
 }
 
+#utilityBar {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+#addRecipeForm {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.ingredient-row,
+.step-row {
+    display: flex;
+    gap: .5rem;
+}
+
+.ingredient-row input,
+.step-row input {
+    flex: 1;
+}
+
+.form-actions {
+    display: flex;
+    gap: .5rem;
+}
+
+.utility-buttons {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+#addRecipeButton {
+    margin-left: auto;
+}
+
 ul.ingredients {
     list-style: none;
     padding-left: 23px;
