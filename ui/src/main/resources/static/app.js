@@ -3,6 +3,95 @@ const ACCOUNT_API = "http://localhost:8080/api/auth";
 
 console.log("app.js loaded");
 
+// ---------- Account API ----------
+function token() {
+    return sessionStorage.getItem("token");
+}
+
+async function callApi(method, path, body) {
+    const options = { method: method, headers: {} };
+    if (token()) {
+        options.headers["Authorization"] = "Bearer " + token();
+    }
+    if (body !== undefined) {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(body);
+    }
+    const response = await fetch(ACCOUNT_API + path, options);   // path is "/login", not "/auth/login"
+    const text = await response.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : null; } catch { data = null; }
+    const result = { ok: response.ok, status: response.status, data: data };
+
+    // 401 on anything except the login itself: token missing or expired
+    if (response.status === 401 && path !== "/login") {
+        logOut("Your session ended. Please log in again.");
+    }
+    return result;
+}
+
+function messageOf(result) {
+    return (result.data && result.data.detail) || ("Request failed (status " + result.status + ")");
+}
+
+async function logIn(event) {
+    event.preventDefault();
+    const credentials = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
+    };
+    const result = await callApi("POST", "/login", credentials);
+    if (!result.ok) {
+        document.getElementById("loginMessage").textContent = messageOf(result);
+        return;
+    }
+    sessionStorage.setItem("token", result.data.token);
+    sessionStorage.setItem("username", result.data.username);
+    document.getElementById("password").value = "";
+    document.getElementById("loginMessage").textContent = "";
+    document.getElementById("loginPopover").hidePopover();   // close the popup
+    updateAuthUI();
+}
+
+async function register() {
+    const credentials = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
+    };
+    const result = await callApi("POST", "/register", credentials);
+    if (!result.ok) {
+        document.getElementById("loginMessage").textContent = messageOf(result);
+        return;
+    }
+    await logIn(new Event("submit"));      // registered: log straight in
+}
+
+function logOut(message) {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
+    updateAuthUI();
+    document.getElementById("loginMessage").textContent = message || "";
+}
+
+// Show "Logged in as ..." + Log out when we have a token, otherwise the Log in button
+function updateAuthUI() {
+    const loggedIn = Boolean(token());
+    const welcome = document.getElementById("welcome");
+    welcome.hidden = !loggedIn;
+    welcome.textContent = loggedIn ? "Logged in as " + sessionStorage.getItem("username") + " " : "";
+    document.getElementById("openLogin").hidden = loggedIn;
+    document.getElementById("logoutButton").hidden = !loggedIn;
+}
+
+// Connect the HTML to the functions
+document.getElementById("loginForm").addEventListener("submit", logIn);
+document.getElementById("registerButton").addEventListener("click", register);
+document.getElementById("logoutButton").addEventListener("click", () => logOut());
+updateAuthUI();   // on page load, restore the logged-in look if a token is saved
+
+
+//------------
+
 async function loadRecipeCards() {
   const container = document.getElementById("recipeCards");
   container.innerHTML = "";
