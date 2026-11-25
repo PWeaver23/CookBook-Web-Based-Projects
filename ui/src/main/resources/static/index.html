@@ -15,6 +15,7 @@
             <button id="openLogin" type="button" popovertarget="loginPopover">Log in</button>
             <button id="logoutButton" type="button" hidden>Log out</button>
             <button id="addRecipeButton" type="button" popovertarget="addRecipePopover" hidden>Add Recipe</button>
+            <button id="profileLink" type="button" hidden>My Profile</button>
         </div>
         <span id="welcome" hidden></span>
     </div>
@@ -54,6 +55,8 @@
                     <button type="button" id="dropStepRow" class="del">Remove last row</button>
                 </span>
 
+                <p id="formMessage" class="error"></p>
+                
                 <div class="form-actions addDel">
                     <button type="submit" id="finishRecipe" class="add">Add Recipe</button>
                     <button type="button" id="closeAddButton" class="del">Close</button>

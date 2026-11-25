@@ -135,6 +135,7 @@ document.getElementById('addRecipeForm').addEventListener('submit', finishRecipe
 document.getElementById('dropIngredientRow').addEventListener('click', () => dropIngredientRow());
 document.getElementById('dropStepRow').addEventListener('click', () => dropStepRow());
 
+
 // ---------- Account API ----------
 
 function token() {
@@ -214,12 +215,14 @@ function updateAuthUI() {
     document.getElementById("openLogin").hidden = loggedIn;
     document.getElementById("logoutButton").hidden = !loggedIn;
     document.getElementById("addRecipeButton").hidden = !loggedIn;
+    document.getElementById("profileLink").hidden = !loggedIn;
 }
 
 // Connect the HTML to the functions
 document.getElementById("loginForm").addEventListener("submit", logIn);
 document.getElementById("registerButton").addEventListener("click", register);
 document.getElementById("logoutButton").addEventListener("click", () => logOut());
+document.getElementById("profileLink").addEventListener("click", () => {window.location.href = "profile.html";});
 updateAuthUI();   // on page load, restore the logged-in look if a token is saved
 
 
@@ -273,6 +276,10 @@ async function authorName(postedById) {
   } catch {
     return "";
   }
+}
+
+function showFormMessage(text) {
+  document.getElementById("formMessage").textContent = text;
 }
 
 loadTypes().then(loadRecipeCards);

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Profile - Online Cookbook</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+    <a href="index.html" class="back-button">&larr; Back to recipes</a>
+    <h1>My Profile</h1>
+
+    <!-- Shown only when nobody is logged in -->
+    <section class="card" id="loggedOutCard" hidden>
+        <p>Please <a href="index.html">log in on the home page</a> to see your profile.</p>
+    </section>
+
+    <!-- Shown only when logged in -->
+    <div id="profileContent" hidden>
+        <div class="utility-buttons">
+            <span id="profileName" class="note"></span>
+            <button id="addRecipeButton" type="button" popovertarget="addRecipePopover">Add Recipe</button>
+        </div>
+
+        <section class="card">
+            <h2>Recipes I made <span id="madeCount" class="meta"></span></h2>
+            <div id="madeList"></div>
+        </section>
+
+        <section class="card">
+            <h2>Recipes I saved <span id="savedCount" class="meta"></span></h2>
+            <div id="savedList"></div>
+        </section>
+    </div>
+
+    <!-- Same form as the home page. The ids match so styles.css styles it the same way. -->
+    <div id="addRecipePopover" popover>
+        <section class="card" id="addRecipeCard">
+            <h2>Add Recipe</h2>
+            <form id="addRecipeForm">
+                <input id="recipeName" placeholder="Recipe Name" required>
+
+                <select id="recipeType" required>
+                    <option value=""></option>
+                    <!-- profile.js adds one option per recipe type -->
+                </select>
+
+                <div id="ingredientRows">
+                    <span class="ingredient-row">
+                        <input placeholder="Ingredient name (Flour)" required>
+                        <input placeholder="Ingredient measure (1/3 Cup)" required>
+                    </span>
+                </div>
+                <span class="rowButtons addDel">
+                    <button type="button" id="addIngredientRow" class="add">Add Row</button>
+                    <button type="button" id="dropIngredientRow" class="del">Remove last row</button>
+                </span>
+
+                <div id="stepRows">
+                    <span class="step-row">
+                        <input placeholder="Recipe step" required>
+                    </span>
+                </div>
+                <span class="rowButtons addDel">
+                    <button type="button" id="addStepRow" class="add">Add Row</button>
+                    <button type="button" id="dropStepRow" class="del">Remove last row</button>
+                </span>
+
+                <p id="formMessage" class="error"></p>
+
+                <div class="form-actions addDel">
+                    <button type="submit" id="finishRecipe" class="add">Add Recipe</button>
+                    <button type="button" id="closeAddButton" class="del">Close</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+</main>
+<script src="profile.js"></script>
+</body>
+</html>

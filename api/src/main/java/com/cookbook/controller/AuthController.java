@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.security.core.Authentication;
+import java.util.List;
+import java.util.Set;
 
 
 import com.cookbook.data.UserRepository;
@@ -24,6 +26,9 @@ import com.cookbook.dto.UserResponse;
 import com.cookbook.model.Account;
 import com.cookbook.services.TokenService;
 import com.cookbook.services.SequenceService;
+import com.cookbook.data.RecipeRepository;
+import com.cookbook.dto.RecipeResponse;
+
 
 import jakarta.validation.Valid;
 
@@ -42,14 +47,16 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokens;
     private final SequenceService sequenceService;
+    private final RecipeRepository recipes;
 
     public AuthController(UserRepository users, PasswordEncoder passwordEncoder,
-                          AuthenticationManager authenticationManager, TokenService tokens, SequenceService sequenceService) {
+                          AuthenticationManager authenticationManager, TokenService tokens, SequenceService sequenceService, RecipeRepository recipes) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.sequenceService = sequenceService;
         this.tokens = tokens;
+        this.recipes = recipes;
     }
 
     @PostMapping("/register")
@@ -92,4 +99,11 @@ public class AuthController {
     public String getUser(@PathVariable Long id) {
         return users.findUsernameById(id);
     }
+
+    @GetMapping("/favorites")
+    public List<RecipeResponse> favorites(Authentication caller) {
+        Account user = users.findByUsername(caller.getName()).orElseThrow();
+        Set<String> ids = user.getFavoriteRecipes() == null ? Set.of() : user.getFavoriteRecipes();
+        return recipes.findAllById(ids).stream().map(RecipeResponse::from).toList();
+}
 }
