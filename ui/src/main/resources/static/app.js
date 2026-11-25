@@ -81,7 +81,6 @@ function closeRecipeAddPopover() {
 
 async function finishRecipe(event) {
   if (event) event.preventDefault();
-  console.log("began recipe add")
 
   // get the active users Id from the API
   const me = await callApi("GET", "/me", ACCOUNT_API);
@@ -117,7 +116,6 @@ async function finishRecipe(event) {
 
   // POST recipe to API
   const result = await callApi("POST", "", RECIPE_API, recipe);
-  console.log(result)
   if (!result.ok) {
     showFormMessage(messageOf(result));
     return;
@@ -232,10 +230,10 @@ async function loadRecipeCards() {
   container.innerHTML = "";
 
   try {
-    const response = await fetch(RECIPE_API);
+    const response = await callApi("GET", "", RECIPE_API);
     if (!response.ok) throw new Error(`Recipes request failed: ${response.status}`);
 
-    const recipes = await response.json();
+    const recipes = await response.data;
     const cards = await Promise.all(recipes.map(buildRecipeCard));
     container.append(...cards);
   } catch (err) {
@@ -266,11 +264,10 @@ async function buildRecipeCard(recipe) {
 async function authorName(postedById) {
   // console.log('Fetching author name for id:', postedById);
   try {
-    const res = await fetch(`${ACCOUNT_API}/name/${postedById}`);
+    // const res = await fetch(`${ACCOUNT_API}/name/${postedById}`);
+    const res = await callApi("GET", `/name/${postedById}`, ACCOUNT_API)
     if (!res.ok) return " · Author: unknown author";
-    const text = await res.text();
-    const data = JSON.parse(text);
-    username = data.username;
+    username = res.data.username;
     if (username == "admin") return "";
     return " · Author: " + (username ?? "unknown author");
   } catch {

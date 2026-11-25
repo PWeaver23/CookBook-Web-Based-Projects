@@ -12,6 +12,7 @@ To query database specifically
     docker exec -it PRO150-cookbook-mongo mongosh cookbook_db 
     db.recipes.find()
     db.accounts.find()
+    db.counters.find()
 
 
 ## Project Summary
