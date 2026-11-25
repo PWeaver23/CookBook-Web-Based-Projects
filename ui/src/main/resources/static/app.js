@@ -29,6 +29,17 @@ function addIngredientRow() {
   document.getElementById('ingredientRows').append(row);
 }
 
+function dropIngredientRow() {
+  const stepRows = document.getElementById('ingredientRows');
+
+  const rows = stepRows.querySelectorAll('.ingredient-row');
+  const length = rows.length;
+
+  if (length > 1) {
+    rows[length - 1].remove();
+  }
+}
+
 function addStepRow() {
   const row = document.createElement('span');
   row.className = 'step-row';
@@ -36,6 +47,17 @@ function addStepRow() {
   <input id="step" placeholder="Recipe step" required>  
   `;
   document.getElementById('stepRows').append(row);
+}
+
+function dropStepRow() {
+  const stepRows = document.getElementById('stepRows');
+
+  const rows = stepRows.querySelectorAll('.step-row');
+  const length = rows.length;
+
+  if (length > 1) {
+    rows[length - 1].remove();
+  }
 }
 
 function closeRecipeAddPopover() {
@@ -112,6 +134,8 @@ document.getElementById("addIngredientRow").addEventListener("click", () => addI
 document.getElementById("addStepRow").addEventListener("click", () => addStepRow())
 document.getElementById('closeAddButton').addEventListener('click', () => closeRecipeAddPopover());
 document.getElementById('addRecipeForm').addEventListener('submit', finishRecipe);
+document.getElementById('dropIngredientRow').addEventListener('click', () => dropIngredientRow());
+document.getElementById('dropStepRow').addEventListener('click', () => dropStepRow());
 
 // ---------- Account API ----------
 

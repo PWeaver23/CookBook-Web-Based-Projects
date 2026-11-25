@@ -38,7 +38,10 @@
                         <input placeholder="Ingredient measure (1/3 Cup)" required>
                     </span>
                 </div>
-                <button type="button" id="addIngredientRow" >Add Row</button>
+                <span class="rowButtons addDel">
+                    <button type="button" id="addIngredientRow" class="add">Add Row</button>
+                    <button type="button" id="dropIngredientRow" class="del">Remove last row</button>
+                </span>
 
                 <!-- one input for step - button to add another input below -->
                 <div id="stepRows">
@@ -46,11 +49,14 @@
                         <input id="step" placeholder="Recipe step" required>
                     </span>
                 </div>
-                <button type="button" id="addStepRow">Add Row</button>
+                <span class="rowButtons addDel">
+                    <button type="button" id="addStepRow" class="add">Add Row</button>
+                    <button type="button" id="dropStepRow" class="del">Remove last row</button>
+                </span>
 
-                <div class="form-actions">
-                    <button type="submit" id="finishRecipe">Add Recipe</button>
-                    <button type="button" id="closeAddButton">Close</button>
+                <div class="form-actions addDel">
+                    <button type="submit" id="finishRecipe" class="add">Add Recipe</button>
+                    <button type="button" id="closeAddButton" class="del">Close</button>
                 </div>
             </form>
         </section>
